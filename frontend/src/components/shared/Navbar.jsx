@@ -3,12 +3,30 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { LogOut, User2 } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { toast } from "sonner";
+import { USER_API_END_POINT } from "@/utils/backendApi";
+import { setUser } from "@/redux/authSlice";
 
 const Navbar = () => {
   
-  const user = useSelector((store) => store.auth);
+  const user = useSelector((store) => store.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+      dispatch(setUser(null));
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed", err);
+      toast.error(err?.response?.data?.message || "Logout failed");
+    }
+  };
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -73,7 +91,7 @@ const Navbar = () => {
                   </div>
                   <div className="flex w-fit items-center gap-2 cursor-pointer ">
                     <LogOut />
-                    <Button variant="link">Logout</Button>
+                    <Button variant="link" onClick={handleLogout}>Logout</Button>
                   </div>
                 </div>
               </PopoverContent>
