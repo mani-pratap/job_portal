@@ -22,11 +22,11 @@ const Login = () => {
     role: "",
   });
 
-  const { loading } = useSelector((store) => store.auth);
-
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
+  const { loading } = useSelector((store) => store.auth);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,6 +50,8 @@ const Login = () => {
       dispatch(setLoading(false));
     }
   };
+
+
   return (
     <div>
       <Navbar />
@@ -90,6 +92,7 @@ const Login = () => {
                 onChange={changeEventHandler}
                 className="cursor-pointer"
               />
+              
               <Label htmlFor="r1">Student</Label>
             </div>
             <div className="flex items-center  space-x-2">
@@ -104,14 +107,14 @@ const Login = () => {
               <Label htmlFor="r2">Recruiter</Label>
             </div>
           </RadioGroup>
+          
           {loading ? (
             <Button className="w-full my-4">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> please wait
             </Button>
           ) : (
             <Button
-              type="button"
-              onClick={submitHandler}
+              type="submit"
               className="w-full my-4">
               Login
             </Button>
@@ -130,3 +133,4 @@ const Login = () => {
 };
 
 export default Login;
+

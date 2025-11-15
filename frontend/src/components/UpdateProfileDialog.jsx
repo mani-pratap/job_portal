@@ -30,33 +30,44 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     file: null,
   });
 
-  // ✅ handle text inputs
+  // handle text inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   };
 
-  // ✅ handle file input separately
+  // handle file input separately
   const handleFileChange = (e) => {
-    setInput({ ...input, file: e.target.files[0] });
+    setInput({ ...input, file: e.target?.files[0] });
   };
 
   const dispatch = useDispatch();
-  // ✅ handle form submit
+
+  // handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const updatedData = {
-      ...input,
-      skills: input.skills.split(",").map((skill) => skill.trim()),
-    };
+  
+
+
+    const formData = new FormData();
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phoneNumber", input.phoneNumber);
+    formData.append("bio", input.bio);
+    formData.append(
+      "skills",
+      input.skills.split(",").map((skill) => skill.trim())
+    ); 
+    if (input.file) formData.append("file", input.file);
+
 
     // Backend call yahan karoge
     try {
-      const res = await axios.post(
+      const res = await axios.patch(
         `${USER_API_END_POINT}/profile/update`,
-        updatedData,
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -68,15 +79,18 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         toast.success(res.data.message);
+        setOpen(false);
       }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} >
       <DialogContent
         className="sm:max-w-[425px]"
         onInteractOutside={() => setOpen(false)}>

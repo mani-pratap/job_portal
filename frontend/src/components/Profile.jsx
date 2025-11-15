@@ -6,12 +6,14 @@ import { Contact, Mail, Pen } from "lucide-react";
 import { Badge } from "./ui/badge";
 import AppliedJobTable from "./AppliedJobTable";
 import UpdateProfileDialog from "./UpdateProfileDialog";
+import { useSelector } from "react-redux";
 
 const skills = ["html", "CSS", "JavaScript", "React.js"];
 const isResume = true;
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useSelector((store) => store.auth);
   return (
     <div>
       <Navbar />
@@ -25,32 +27,31 @@ const Profile = () => {
               />
             </Avatar>
             <div>
-              <h1 className="font-medium text-xl">Full Name</h1>
-              <p>Lorem ipsum dolor sit.</p>
+              <h1 className="font-medium text-xl">{user?.fullname}</h1>
+              <p>{user?.profile?.bio}</p>
             </div>
           </div>
-          <Button
-            className="text-right"
-            variant="outline"
-            onClick={() => setOpen(true)}>
+          <Button variant="outline" onClick={() => setOpen(true)}>
             <Pen />
           </Button>
         </div>
         <div className="my-5">
           <div className="flex items-center gap-4">
             <Mail />
-            <span>gmail@gmail.com</span>
+            <span>{user?.email}</span>
           </div>
           <div className="flex items-center gap-4">
             <Contact />
-            <span>1234567890</span>
+            <span>{user?.phoneNumber}</span>
           </div>
         </div>
         <div>
           <h1>Skills</h1>
           <div className="flex items-center gap-1">
-            {skills.length !== 0 ? (
-              skills.map((item, index) => <Badge key={index}>{item}</Badge>)
+            {user?.profile?.skills.length !== 0 ? (
+              user?.profile?.skills.map((item, index) => (
+                <Badge key={index}>{item}</Badge>
+              ))
             ) : (
               <span>N/A</span>
             )}
@@ -63,7 +64,7 @@ const Profile = () => {
               target="blank"
               href="http://youtube.com"
               className="text-blue-500 w-full hover:underline cursor-pointer">
-              user_resume_name
+              {user?.profile?.resumeOriginalName}
             </a>
           ) : (
             <span>N/A</span>

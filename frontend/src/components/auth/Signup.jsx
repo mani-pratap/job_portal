@@ -154,10 +154,7 @@ const Signup = () => {
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> please wait
             </Button>
           ) : (
-            <Button
-              type="button"
-              onClick={submitHandler}
-              className="w-full my-4">
+            <Button type="submit" className="w-full my-4">
               signup
             </Button>
           )}
