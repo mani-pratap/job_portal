@@ -3,6 +3,7 @@ import Navbar from "./shared/Navbar";
 import Filter from "./FilterCards";
 import Job from "./Job";
 import { useSelector } from "react-redux";
+import Footer from "./shared/Footer";
 
 const Jobs = () => {
   // const jobsArray = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -31,6 +32,7 @@ const Jobs = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

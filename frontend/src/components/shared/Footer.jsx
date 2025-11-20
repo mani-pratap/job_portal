@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2b1058] text-white">
+    <footer className="bg-gray-200 text-white">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">JobPortal</h3>
+            <h3 className="text-2xl font-bold text-black">JobPortal</h3>
             <p className="text-gray-400">
               Find your dream job or hire the perfect candidate. Join thousands
               of companies and job seekers who trust JobPortal.
@@ -17,7 +17,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 text-black">
+              Quick Links
+            </h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white">
@@ -25,7 +27,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/jobs" className="text-gray-400 hover:text-white">
+                <Link to="/jobs" className="text-gray-400 hover:text-white ">
                   Find Jobs
                 </Link>
               </li>
@@ -52,7 +54,9 @@ const Footer = () => {
 
           {/* Job Categories */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Job Categories</h4>
+            <h4 className="text-lg font-semibold mb-4 text-black">
+              Job Categories
+            </h4>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -99,7 +103,9 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4 text-black">
+              Contact Us
+            </h4>
             <div className="space-y-2 text-gray-400">
               <p>1234 Job Street</p>
               <p>Career City, ST 12345</p>

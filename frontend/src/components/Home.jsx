@@ -3,8 +3,8 @@ import Navbar from "./shared/Navbar";
 import HeroSection from "./HeroSection";
 import CategoryCarousel from "./CategoryCarousel";
 import LatestJobs from "./LatestJobs";
-import Footer from "./Footer";
 import useGetAllJobs from "@/hooks/useGetAllJobs";
+import Footer from "./shared/Footer";
 
 const Home = () => {
   useGetAllJobs();

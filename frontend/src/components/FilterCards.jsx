@@ -39,7 +39,8 @@ const Filter = () => {
 
                 <Label
                   htmlFor={`${data.filterType}-${j}`}
-                  className="cursor-pointer">
+                  className="cursor-pointer"
+                >
                   {item}
                 </Label>
               </div>
