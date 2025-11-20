@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Button } from "../ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -19,7 +19,7 @@ const CompanySetup = () => {
     file: null,
   });
 
-  const {singleCompany} = useSelector(store=>store.company)
+  const { singleCompany } = useSelector((store) => store.company);
   const pramas = useParams();
   const navigate = useNavigate();
 
@@ -63,6 +63,16 @@ const CompanySetup = () => {
       toast.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    setInput({
+      name: singleCompany.name || "",
+      description: singleCompany.description || "",
+      website: singleCompany.website || "",
+      location: singleCompany.location || "",
+      file: singleCompany.file || null,
+    });
+  }, [singleCompany]);
 
   return (
     <div>
