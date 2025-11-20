@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./shared/Navbar";
 import Job from "./Job";
+import Footer from "./shared/Footer";
 
 const Browse = () => {
   const randomJobs = [1, 2, 3,4,5,6,7,8 ];
@@ -15,6 +16,7 @@ const Browse = () => {
         })}
        </div>
       </div>
+      <Footer/>
     </div>
   );
 };
