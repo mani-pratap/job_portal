@@ -29,9 +29,12 @@ const JobDescription = () => {
 
   const applyJobHandler = async () => {
     try {
-      const res = await axios.get(`${APPLICATION_API_END_POINT}/apply/${jobId}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${APPLICATION_API_END_POINT}/apply/${jobId}`,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(res.data);
 
       if (res.data.success) {
@@ -56,7 +59,7 @@ const JobDescription = () => {
       try {
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, {
           withCredentials: true,
-        }); 
+        });
         console.log(res);
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
@@ -99,7 +102,8 @@ const JobDescription = () => {
               isApplied
                 ? "bg-gray-600 cursor-not-allowed"
                 : " bg-[#7209b7] hover:bg-[#5f32ad]"
-            }`}>
+            }`}
+          >
             {isApplied ? "Already Applied" : "Apply Now"}
           </Button>
         </div>
@@ -143,7 +147,7 @@ const JobDescription = () => {
         <h1 className="font-bold my-1">
           Posted Date:{" "}
           <span className="pl-4 font-normal text-gray-800">
-            {singleJob?.createdAt.split("T")[0]}
+            {singleJob?.createdAt ? singleJob.createdAt.split("T")[0] : "-"}
           </span>
         </h1>
       </div>

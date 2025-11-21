@@ -10,7 +10,7 @@ import {
 } from "../ui/table";
 
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Edit2, MoreHorizontal } from "lucide-react";
+import { Edit2, Eye, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const AdminJobsTable = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const text = (searchJobByText || "").toLowerCase();  
+    const text = (searchJobByText || "").toLowerCase();
 
     const filteredJobs = (allAdminJobs || []).filter((job) => {
       if (!text) return true;
@@ -68,6 +68,15 @@ const AdminJobsTable = () => {
                       >
                         <Edit2 className="w-4" />
                         <span>Edit</span>
+                      </div>
+                      <div
+                        onClick={() =>
+                          navigate(`/admin/jobs/${job._id}/applicants`)
+                        }
+                        className="flex items-center cursor-pointer w-fit gap-2 mt-2"
+                      >
+                        <Eye className="w-4" />
+                        <span>Appliacants</span>
                       </div>
                     </PopoverContent>
                   </Popover>
