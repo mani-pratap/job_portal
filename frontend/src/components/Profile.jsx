@@ -9,7 +9,7 @@ import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
 import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
-const skills = ["html", "CSS", "JavaScript", "React.js"];
+// const skills = ["html", "CSS", "JavaScript", "React.js"];
 const isResume = true;
 
 const Profile = () => {
@@ -75,7 +75,7 @@ const Profile = () => {
             <span>N/A</span>
           )}
         </div>
-        
+
         <div className="max-w-4xl mx-auto bg-white rounded-2xl my-8">
           <h1 className="font-bold capitalize text-2xl">Applied jobs</h1>
           {/* applied job table */}

@@ -6,7 +6,6 @@ import applicationSlice from "./applicationSlice";
 
 // redux-persist
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
