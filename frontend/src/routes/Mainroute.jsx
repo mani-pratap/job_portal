@@ -25,9 +25,9 @@ const Mainroute = () => {
         <Route path="/browse" element={<Browse />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/jobs/description/:id" element={<JobDescription />} />
-      </Routes>
-      {/* recuiter routes */}
-      <Routes>
+
+        {/* recuiter routes */}
+
         <Route path="/admin/companies" element={<Companies />} />
         <Route path="/admin/companies/create" element={<CreateCompany />} />
         <Route path="/admin/companies/:id" element={<CompanySetup />} />

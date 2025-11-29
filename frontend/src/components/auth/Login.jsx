@@ -83,6 +83,7 @@ const Login = () => {
             />
           </div>
           <RadioGroup className="flex items-center gap-4 my-5">
+            
             <div className="flex items-center space-x-2">
               <input
                 type="radio"
@@ -92,7 +93,6 @@ const Login = () => {
                 onChange={changeEventHandler}
                 className="cursor-pointer"
               />
-              
               <Label htmlFor="r1">Student</Label>
             </div>
             <div className="flex items-center  space-x-2">

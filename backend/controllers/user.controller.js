@@ -18,15 +18,21 @@ export const register = async (req, res) => {
     }
 
     const file = req.file;
-    if (!file) {
-      return res.status(400).json({
-        message: "Profile photo (file) is required",
-        success: false,
-      });
+
+    let profilePhotoUri = "";
+
+    if (file) {
+      const fileUri = getDataUri(file);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+      profilePhotoUri = cloudResponse.secure_url;
     }
 
-    const fileUri = getDataUri(file);
-    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    // if (!file) {
+    //   return res.status(400).json({
+    //     message: "Profile photo (file) is required",
+    //     success: false,
+    //   });
+    // }
 
     const user = await User.findOne({ email });
 
@@ -46,7 +52,7 @@ export const register = async (req, res) => {
       password: hashedPassword,
       role,
       profile: {
-        profilePhoto: cloudResponse.secure_url,
+        profilePhoto: profilePhotoUri,
       },
     });
 
@@ -64,7 +70,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
-    console.log(email, password, role);
+    // console.log(email, password, role);
 
     if (!email || !password || !role) {
       return res.status(400).json({
@@ -98,11 +104,11 @@ export const login = async (req, res) => {
       });
     }
 
-    const tokenData = {
+    const tokenPayload = {
       userId: user._id,
     };
-    const token = await jwt.sign(tokenData, process.env.SECRET_KEY, {
-      expiresIn: "1d",
+    const token = jwt.sign(tokenPayload, process.env.SECRET_KEY, {
+      expiresIn: "15m",
     });
 
     const userData = {
@@ -117,7 +123,7 @@ export const login = async (req, res) => {
     return res
       .status(200)
       .cookie("token", token, {
-        maxAge: 1 * 24 * 60 * 60 * 1000,
+        maxAge: 15 * 60 * 1000,
         httpOnly: true, // XSS attack
         sameSite: "strict", // CSRF attack
       })
@@ -175,7 +181,7 @@ export const updateProfile = async (req, res) => {
 
     // uploading resume if file exists
     if (file) {
-      const fileUri = getDataUri(file);
+      const fileUri = getDataUri(file);  //base64 formate of buffer data
 
       // { content: "data:application/pdf;base64,JVBERi0xLjcKJc..."  // long base64 string}
 

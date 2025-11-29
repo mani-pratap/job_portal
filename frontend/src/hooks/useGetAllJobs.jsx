@@ -4,9 +4,12 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// get all jobs or related Qurry jobs from backend
+
 const useGetAllJobs = () => {
   const dispatch = useDispatch();
   const { searchedQuery } = useSelector((store) => store.jobs);
+  
   useEffect(() => {
     const fetchAllJobs = async () => {
       try {

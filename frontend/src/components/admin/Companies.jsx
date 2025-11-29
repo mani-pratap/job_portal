@@ -29,11 +29,15 @@ const Companies = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
+
+          {/* add new company  */}
           <Button onClick={() => navigate("/admin/companies/create")}>
             {" "}
             New Company
           </Button>
         </div>
+
+        {/* table */}
         <CompaniesTable />
       </div>
     </div>

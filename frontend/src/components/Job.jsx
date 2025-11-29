@@ -10,10 +10,13 @@ const Job = ({ job }) => {
   const jobId = job._id;
 
   const daysAgoFuntion = (mongodbTime) => {
+    // console.log("mongo ---> ",mongodbTime, typeof(mongodbTime))
     const createdAt = new Date(mongodbTime);
+    // console.log(createdAt, typeof(createdAt));
     const currentTime = new Date();
 
     const timeDiffrence = currentTime - createdAt;
+    // console.log(timeDiffrence)
     return Math.floor(timeDiffrence / (1000 * 60 * 60 * 24));
   };
 
@@ -30,6 +33,7 @@ const Job = ({ job }) => {
           <Bookmark />
         </Button>
       </div>
+
       <div className="flex items-center gap-2 my-2">
         <Button className="p-6" variant="outline" size="icon">
           <Avatar>
@@ -43,7 +47,7 @@ const Job = ({ job }) => {
       </div>
       <div>
         <h1 className="font-bold text-lg my-2">{job?.title}</h1>
-        <p className="text-sm text-gray-600">{job?.position}</p>
+        <p className="text-sm text-gray-600">position : {job?.position}</p>
       </div>
       <div className="flex items-center mt-4 gap-2">
         <Badge variant="ghost" className="text-blue-400 font-bold">
@@ -59,8 +63,7 @@ const Job = ({ job }) => {
       <div className="flex items-center gap-4 mt-4">
         <Button
           variant="outline"
-          onClick={() => navigate(`/jobs/description/${jobId}`)}
-        >
+          onClick={() => navigate(`/jobs/description/${jobId}`)}>
           Details
         </Button>
         <Button>Save For Later</Button>

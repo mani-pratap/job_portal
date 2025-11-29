@@ -20,6 +20,8 @@ const Profile = () => {
     <div>
       <Navbar />
       <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-8">
+
+        {/* profile image */}
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
             <Avatar className="h-24 w-24">
@@ -39,6 +41,7 @@ const Profile = () => {
           </Button>
         </div>
 
+        {/*profile details  */}
         <div className="my-5">
           <div className="flex items-center gap-4">
             <Mail />
@@ -61,6 +64,7 @@ const Profile = () => {
             )}
           </div>
         </div>
+        {/* resume ---------------- */}
         <div className="grid w-full max-w-sm items-center gap-1.5 my-2">
           <label className="text-md font-semibold">Resume</label>
           {isResume ? (

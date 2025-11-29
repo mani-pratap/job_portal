@@ -8,7 +8,7 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
-dotenv.config({});
+dotenv.config();
 
 const app = express();
 
@@ -16,6 +16,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
+// cors setup
 const corsOptions = {
   origin: `http://localhost:5173`,
   credentials: true,
@@ -24,12 +27,14 @@ app.use(cors(corsOptions));
 
 // Routes ---------
 
-app.get("/home", (req, res) => {
-  return res.status(200).json({
-    message: "I am coming from backend",
-    success: true,
-  });
-});
+// just to check >>>>>>>
+
+// app.get("/home", (req, res) => {
+//   return res.status(200).json({
+//     message: "I am coming from backend",
+//     success: true,
+//   });
+// });
 
 // Mount user routes
 app.use("/api/v1/user", userRoute);

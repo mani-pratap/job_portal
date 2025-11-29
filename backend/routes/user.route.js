@@ -18,9 +18,15 @@ const router = express.Router();
 // });
 
 // router.post("/register", register);
-router.route("/register").post(singleUpload,register);
-router.route("/login").post(login);
-router.route("/logout").get(logout);
-router.route("/profile/update").patch(isAuthenticated,singleUpload, updateProfile);
+// router.route("/register").post(singleUpload,register);
+// router.route("/login").post(login);
+// router.route("/logout").get(logout);
+// router.route("/profile/update").patch(isAuthenticated,singleUpload, updateProfile);
+
+router
+  .post("/register", singleUpload, register)
+  .post("/login", login)
+  .get("/logout", logout)
+  .patch("/profile/update", isAuthenticated, singleUpload, updateProfile);
 
 export default router;

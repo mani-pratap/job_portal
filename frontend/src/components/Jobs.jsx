@@ -9,8 +9,8 @@ import Footer from "./shared/Footer";
 const Jobs = () => {
   useGetAllJobs();
   const { allJobs = [] } = useSelector((store) => store.jobs);
-  const { searchedQuery } = useSelector((store) => store.jobs);
   // console.log(allJobs);
+  const { searchedQuery } = useSelector((store) => store.jobs);
   const [filterJobs, setFilterJobs] = useState(allJobs);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const Jobs = () => {
               <div className="grid grid-cols-3 gap-4">
                 {filterJobs.map((job) => (
                   <div key={job._id}>
+                    {/* {console.log(job)} */}
                     <Job job={job} />
                   </div>
                 ))}

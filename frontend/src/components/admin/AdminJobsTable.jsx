@@ -19,6 +19,20 @@ const AdminJobsTable = () => {
   const [filterJobs, setFilterJobs] = useState(() => allAdminJobs || []);
   const navigate = useNavigate();
 
+  // Filter jobs using memoized logic (no useEffect needed)
+//   const filteredJobs = useMemo(() => {
+//     const text = searchJobByText.toLowerCase().trim();
+//     if (!text) return allAdminJobs;
+// 
+//     return allAdminJobs.filter((job) => {
+//       const jobTitle = (job?.title || "").toLowerCase();
+//       const companyName = (job?.company?.name || "").toLowerCase();
+//       return jobTitle.includes(text) || companyName.includes(text);
+//     });
+//   }, [allAdminJobs, searchJobByText]);
+
+
+
   useEffect(() => {
     const text = (searchJobByText || "").toLowerCase();
 
@@ -31,6 +45,8 @@ const AdminJobsTable = () => {
     });
     setFilterJobs(filteredJobs);
   }, [allAdminJobs, searchJobByText]);
+
+  
   return (
     <div>
       <Table>
@@ -64,8 +80,7 @@ const AdminJobsTable = () => {
                     <PopoverContent className="w-32">
                       <div
                         onClick={() => navigate(`/admin/companies/${job._id}`)}
-                        className="flex items-center gap-2 w-fit cursor-pointer"
-                      >
+                        className="flex items-center gap-2 w-fit cursor-pointer">
                         <Edit2 className="w-4" />
                         <span>Edit</span>
                       </div>
@@ -73,8 +88,7 @@ const AdminJobsTable = () => {
                         onClick={() =>
                           navigate(`/admin/jobs/${job._id}/applicants`)
                         }
-                        className="flex items-center cursor-pointer w-fit gap-2 mt-2"
-                      >
+                        className="flex items-center cursor-pointer w-fit gap-2 mt-2">
                         <Eye className="w-4" />
                         <span>Appliacants</span>
                       </div>

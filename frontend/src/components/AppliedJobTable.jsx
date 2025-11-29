@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 const AppliedJobTable = () => {
   const { allAppliedJobs = [] } = useSelector((store) => store.jobs || {});
+  console.log("job ________",allAppliedJobs);
   return (
     <div>
       <Table>
@@ -48,8 +49,7 @@ const AppliedJobTable = () => {
                         : appliedJOb?.status === "pending"
                         ? "bg-gray-400"
                         : "bg-green-400"
-                    }`}
-                  >
+                    }`}>
                     {appliedJOb?.status.toUpperCase() ?? "-"}
                   </Badge>
                 </TableCell>
