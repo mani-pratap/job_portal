@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 
 // just to check >>>>>>>
 
-app.get("/healthz", (req, res) => {
+app.get("/", (req, res) => {
   return res.status(200).json({
     message: "I am coming from backend",
     success: true,
