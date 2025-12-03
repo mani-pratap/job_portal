@@ -18,11 +18,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // cors setup
-const corsOptions = {
-  origin: `http://localhost:5173`,
-  credentials: true,
-};
-app.use(cors(corsOptions));
+const allowedOrigins = [
+  "http://localhost:5173", // Local frontend
+  "https://job-portal-frontend.vercel.app", // Your Vercel frontend URL
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  })
+);
 
 // Routes ---------
 

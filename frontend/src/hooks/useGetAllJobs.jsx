@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const useGetAllJobs = () => {
   const dispatch = useDispatch();
   const { searchedQuery } = useSelector((store) => store.jobs);
-  
+
   useEffect(() => {
     const fetchAllJobs = async () => {
       try {
@@ -29,7 +29,7 @@ const useGetAllJobs = () => {
     };
 
     fetchAllJobs();
-  }, []);
+  }, [searchedQuery, dispatch]);
 };
 
 export default useGetAllJobs;
