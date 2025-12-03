@@ -20,7 +20,8 @@ app.use(cookieParser());
 // cors setup
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend
-  "https://job-portal-frontend.vercel.app", // Your Vercel frontend URL
+  "https://job-portal-frontend.vercel.app", // Your Vercel frontend URL,
+  
 ];
 
 app.use(
